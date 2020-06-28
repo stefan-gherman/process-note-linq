@@ -82,7 +82,14 @@ namespace Codecool.ApplicationProcess
 
             if (result.Count() == 0)
             {
-
+                Console.WriteLine("No mentors");
+            }
+            else
+            {
+                foreach (var mentor in result)
+                {
+                    Console.WriteLine(mentor);
+                }
             }
         }
 
