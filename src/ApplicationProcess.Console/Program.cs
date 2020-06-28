@@ -33,6 +33,25 @@ namespace Codecool.ApplicationProcess
             SelectMenuItem();
         }
 
+        /// <summary>
+        /// Prints the result set of a query.
+        /// </summary>
+        /// <param name="resultList">A list of all the results.</param>
+        public static void PrintResults(IEnumerable<object> resultList)
+        {
+            if (resultList.Count() == 0)
+            {
+                Console.WriteLine("No results");
+            }
+            else
+            {
+                foreach (var result in resultList)
+                {
+                    Console.WriteLine(result);
+                }
+            }
+        }
+
         private static void SelectMenuItem()
         {
             var chosenMenu = Console.ReadLine();
@@ -66,12 +85,17 @@ namespace Codecool.ApplicationProcess
 
         private static void GetStudentEmailList()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Applied Students email list");
+            var result = _repo.GetAppliedStudentEmailList();
+            PrintResults(result);
         }
 
         private static void GetApplicantsOfMentor()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Enter mentor nickname:");
+            var answer = Console.ReadLine();
+            var result = _repo.GetApplicantsOf(answer);
+            PrintResults(result);
         }
 
         private static void GetMentorWithFavouriteLanuage()
@@ -107,7 +131,7 @@ namespace Codecool.ApplicationProcess
 
             var amount = _repo.AmountOfApplicationAfter(startDate);
 
-            Console.WriteLine($"The ");
+            Console.WriteLine($"The number is {amount}");
         }
 
         /// <summary>

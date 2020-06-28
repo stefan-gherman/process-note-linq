@@ -32,7 +32,9 @@ namespace Codecool.ApplicationProcess.Data
         public int AmountOfApplicationAfter(DateTime date)
         {
             // Your implementation goes here.
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            var filteredResult = _applicants.Where((app) => app.StartDate > date);
+            return filteredResult.Count();
         }
 
         /// <inheritdoc/>
@@ -57,14 +59,31 @@ namespace Codecool.ApplicationProcess.Data
         public IEnumerable<Applicant> GetApplicantsOf(string contactMentorName)
         {
             // Your implementation goes here.
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            if (contactMentorName.Length < 3)
+            {
+                throw new ArgumentException("Parameter length is unsuitable, 3 or more chars.");
+            }
+
+            var filteredResult = _applications.Where((appl) => appl.Mentor.Nickname.Equals(contactMentorName));
+            IList<Applicant> resultSet = new List<Applicant>();
+            foreach (var result in filteredResult)
+            {
+                resultSet.Add(result.Applicant);
+            }
+
+            return resultSet;
         }
 
         /// <inheritdoc/>
         public IEnumerable<string> GetAppliedStudentEmailList()
         {
             // Your implementation goes here.
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            var resultSet = _applicants.Where(appl => appl.Status == ApplicationStatus.Applied)
+                .Select(appl => appl.Email);
+            return resultSet;
         }
 
         /// <summary>
