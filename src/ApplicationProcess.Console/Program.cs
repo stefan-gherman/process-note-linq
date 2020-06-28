@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Codecool.ApplicationProcess.Data;
 using Codecool.ApplicationProcess.Entities;
 
@@ -75,7 +76,14 @@ namespace Codecool.ApplicationProcess
 
         private static void GetMentorWithFavouriteLanuage()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Enter programming language:");
+            var answer = Console.ReadLine();
+            var result = _repo.GetAllMentorWhomFavoriteLanguage(answer);
+
+            if (result.Count() == 0)
+            {
+
+            }
         }
 
         private static void GetAmountOfApplicants()
@@ -110,10 +118,16 @@ namespace Codecool.ApplicationProcess
             var city = Console.ReadLine();
 
             var mentors = _repo.GetAllMentorFrom(_cities[city]);
-
-            foreach (var mentor in mentors)
+            if (mentors.Count() == 0)
             {
-                Console.WriteLine(mentor);
+                Console.WriteLine("No mentors");
+            }
+            else
+            {
+                foreach (var mentor in mentors)
+                {
+                    Console.WriteLine(mentor);
+                }
             }
         }
 

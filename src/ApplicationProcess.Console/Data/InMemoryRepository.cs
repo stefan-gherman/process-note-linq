@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Codecool.ApplicationProcess.Entities;
 
 namespace Codecool.ApplicationProcess.Data
@@ -38,14 +39,18 @@ namespace Codecool.ApplicationProcess.Data
         public IEnumerable<Mentor> GetAllMentorFrom(City city)
         {
             // Your implementation goes here.
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            var filteredResult = _mentors.Where((m) => m.City == city);
+            return filteredResult;
         }
 
         /// <inheritdoc/>
         public IEnumerable<Mentor> GetAllMentorWhomFavoriteLanguage(string language)
         {
             // Your implementation goes here.
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            var filteredResult = _mentors.Where((m) => m.ProgrammingLanguage.ToLower().Equals(language.ToLower()));
+            return filteredResult;
         }
 
         /// <inheritdoc/>
