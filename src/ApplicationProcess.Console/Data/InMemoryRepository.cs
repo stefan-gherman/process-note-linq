@@ -89,7 +89,7 @@ namespace Codecool.ApplicationProcess.Data
         /// <summary>
         /// Seed memory storage with sample data.
         /// </summary>
-        private void Seed()
+        public void Seed()
         {
             #region Seed Mentors
             var atesz = new Mentor("Attila", "Molnár")

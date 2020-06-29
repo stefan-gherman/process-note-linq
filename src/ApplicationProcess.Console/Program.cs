@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 using Codecool.ApplicationProcess.Data;
 using Codecool.ApplicationProcess.Entities;
 
@@ -28,7 +29,16 @@ namespace Codecool.ApplicationProcess
         /// <param name="args">Command line arguments.</param>
         public static void Main(string[] args)
         {
-            _repo = new InMemoryRepository();
+            if (args.Length > 0 && args[0].Equals("xml"))
+            {
+                _repo = new XMLRepository();
+                Console.WriteLine("XML");
+            }
+            else
+            {
+                _repo = new InMemoryRepository();
+            }
+
             PrintMenu();
             SelectMenuItem();
         }

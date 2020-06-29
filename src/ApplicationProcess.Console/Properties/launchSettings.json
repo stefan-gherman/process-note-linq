@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Codecool.ApplicationProcess": {
+      "commandName": "Project",
+      "commandLineArgs": "xml"
+    }
+  }
+}
